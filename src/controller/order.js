@@ -70,7 +70,9 @@ module.exports = {
       const orderDetails = user.cart.slice(1).map(item => `<em>${item.title}</em>`).join('\n')
       const totalPrice = CartController.getTotalPrice(user)
       const userDetails = `<b>Имя:</b> ${order.name}\n<b>Адрес доставки:</b> ${order.address}\n<b>Телефон:</b> ${order.phone}`
-      bot.sendMessage(600909887,500443845, `<b>Новый заказ!</b>\n\n${orderDetails}<em>\nСумма заказа ${typeof(totalPrice) === 'number' ? totalPrice : totalPrice.total} ${rub}</em>\n\n${userDetails}`, {parse_mode: 'HTML'})
+      bot.sendMessage(600909887, `<b>Новый заказ!</b>\n\n${orderDetails}<em>\nСумма заказа ${typeof(totalPrice) === 'number' ? totalPrice : totalPrice.total} ${rub}</em>\n\n${userDetails}`, {parse_mode: 'HTML'})
+      bot.sendMessage(500443845, `<b>Новый заказ!</b>\n\n${orderDetails}<em>\nСумма заказа ${typeof(totalPrice) === 'number' ? totalPrice : totalPrice.total} ${rub}</em>\n\n${userDetails}`, {parse_mode: 'HTML'})
+     
         .then(() => bot.sendMessage(user.userId, 'Спасибо за заказ! В ближайшее время с Вами свяжется наш менеджер.'))
         .then(() => CartController.clearCart(user))
     } catch (error) {
